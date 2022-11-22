@@ -1,7 +1,11 @@
 export class Usuariorepository{
     private usuarios =[];
 
-    salvar(usuario){
-        this.usuarios.push(usuario)
+    async salvar(usuario){
+        this.usuarios.push(usuario);
+    }
+
+    async listar(){
+        return this.usuarios;
     }
 }
