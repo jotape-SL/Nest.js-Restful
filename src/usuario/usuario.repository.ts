@@ -18,5 +18,22 @@ export class Usuariorepository{
             usuario => usuario.email === email
             );
         return possivelUsuario !== undefined;
-    }; 
+    }
+
+    async atualiza(id:string, dadosDeAtualizacao: Partial<UsuarioEntity>){
+      const possivelUsuario = this.usuarios.find(
+        usuarioSalvo => usuarioSalvo.id === id
+      );
+      if(!possivelUsuario){
+        throw new Error('Usuario nao existente.')
+      }
+
+      Object.entries(dadosDeAtualizacao).forEach(([chave, valor])=>{
+        if(chave ==='id'){
+          return
+        }
+        possivelUsuario[chave] = valor
+      });
+      return possivelUsuario
+    }
 }
